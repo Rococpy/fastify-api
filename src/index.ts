@@ -166,6 +166,28 @@ app.post('/cardtype/check', async (request: any, reply: FastifyReply) => {
   return returnData;
 });
 
+app.post('/cardtype/update', async (request: any, reply: FastifyReply) => {
+  let returnData: any = [];
+
+  request?.body?.data.map((x: any) => {
+    const splitData = x.split('|');
+
+    const finddata = returnData.findIndex((x: any) => x.cardNm == splitData[1]);
+    console.log(finddata);
+
+    if (finddata == -1) {
+      returnData.push({
+        cardNm: splitData[1],
+        cardNo: [splitData[0]],
+      });
+    } else {
+      returnData[finddata].cardNo.push(splitData[0]);
+    }
+  });
+
+  return returnData;
+});
+
 (async () => {
   await app.listen({ host: '::', port: PORT });
 })();
