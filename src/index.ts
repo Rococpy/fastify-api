@@ -151,23 +151,19 @@ app.get('/cardtype', async (request: FastifyRequest, reply: FastifyReply) => {
 app.post('/cardtype/check', async (request: any, reply: FastifyReply) => {
   let returnData;
   cardType.map((x, i) => {
-    const cardno = String(request?.body?.cardNo).replace('-', '').slice(0, 6);
-    const Findno = x.cardNo.includes(cardno);
-    const cardnoT = String(request?.body?.cardNo).replace('-', '').slice(0, 8);
-    const FindnoT = x.cardNo.includes(cardnoT);
+    const card6no = String(request?.body?.cardNo).replace('-', '').slice(0, 6);
+    const Find6no = x.cardNo.includes(card6no);
+    const card8no = String(request?.body?.cardNo).replace('-', '').slice(0, 8);
+    const Find8no = x.cardNo.includes(card8no);
 
-    if (Findno == true) {
+    if (Find6no == true || Find8no == true) {
       returnData = { cardNm: x.cardNm, cardNo: request?.body?.cardNo };
-
-      if (FindnoT == true) {
-        returnData = { cardNm: x.cardNm, cardNo: request?.body?.cardNo };
-      }
     }
   });
 
   if (!returnData) {
-    reply.code(500);
-    return { code: 500, message: 'Internal Server Error' };
+    reply.code(400);
+    return { code: 400, message: 'Bad Request' };
   }
   return returnData;
 });
