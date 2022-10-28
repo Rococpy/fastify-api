@@ -1,5 +1,6 @@
 # Rococpy Fastify API
 
+테스트 사이트: In ready...
 
 GET: http://fast-api.rococpy.com | 메인
 
