@@ -153,6 +153,7 @@ app.post('/cardtype/check', async (request: any, reply: FastifyReply) => {
   cardType.map((x, i) => {
     const card6no = String(request?.body?.cardNo).replace('-', '').slice(0, 6);
     const Find6no = x.cardNo.includes(card6no);
+
     const card8no = String(request?.body?.cardNo).replace('-', '').slice(0, 8);
     const Find8no = x.cardNo.includes(card8no);
 
