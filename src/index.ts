@@ -192,7 +192,7 @@ app.post('/cardtype/update', async (request: any, reply: FastifyReply) => {
   return returnData;
 });
 
-app.get('/rice/line', async (request: any, reply: FastifyReply) => {
+app.post('/rice/line', async (request: any, reply: FastifyReply) => {
   console.log(request);
   let returnHtml = '';
 
