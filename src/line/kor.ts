@@ -10,30 +10,36 @@ function shuffle(array: any) {
   array.sort(() => Math.random() - 0.5);
 }
 
-export const Line = async (request: any, reply: FastifyReply) => {
+export const KoLine = async (request: any, reply: FastifyReply) => {
   const requestText = request.body.events[0].message.text;
   let returnHtml = '';
 
-  if (requestText == '/도움' || requestText == '/help') {
+  if (requestText == '/도움') {
     returnHtml +=
-      'Line & Fastify \n\n/밥|밥줘|학|학식\n/랜덤|random [항목1, 항목2]\n/사다리 [항목1, 항목2, ...] [인원1, 인원2, ...]\n - 주의! 항목 수와 인원 수는 동일하게 작성해주세요!\n\n이 녀석은 오류나면 답을 안주니 참고';
+      '선 & 빠르게 \n\n/밥|밥줘|학|학식\n/무작위 [항목1, 항목2]\n/사다리 [항목1, 항목2, ...] [인원1, 인원2, ...]\n - 주의! 항목 수와 인원 수는 동일하게 작성해주세요!\n\n이 녀석은 고장나면 답을 안주니 참고';
+  }
+
+  if (requestText == '/한글날') {
+    returnHtml +=
+      '한글날엔 일부 명령어가 변경됩니다! \n오늘 만큼은 /도움 으로 명령어를 확인해보세요!';
   }
 
   if (requestText == '/랜덤' || requestText == '/random') {
-    returnHtml += '/랜덤|random [항목1, 항목2]';
+    returnHtml += '오늘만큼은 /무작위 명령어를 써보자구요!';
   }
 
-  if (requestText.includes('/랜덤 ') || requestText.includes('/random ')) {
-    console.log(requestText.includes('/랜덤'), requestText.includes('/random'));
-    const rmprefix = requestText.includes('/랜덤')
-      ? requestText.split('/랜덤 ')
-      : requestText.includes('/random')
-      ? requestText.split('/random ')
+  if (requestText == '/무작위') {
+    returnHtml += '/무작위 [항목1, 항목2]';
+  }
+
+  if (requestText.includes('/무작위 ')) {
+    const rmprefix = requestText.includes('/무작위')
+      ? requestText.split('/무작위 ')
       : '';
 
     const a = rmprefix[1].split('[')[1].split(']')[0].split(',');
 
-    returnHtml += `랜덤 결과\n\n${a[
+    returnHtml += `무작위 결과\n\n${a[
       Math.floor(Math.random() * a.length)
     ].trim()}`;
   }
@@ -67,13 +73,9 @@ export const Line = async (request: any, reply: FastifyReply) => {
 
   if (
     requestText == '/밥' ||
-    requestText == '/qkq' ||
     requestText == '/밥줘' ||
-    requestText == '/qkqwnj' ||
     requestText == '/학' ||
-    requestText == '/gkr' ||
-    requestText == '/학식' ||
-    requestText == '/gkrtlr'
+    requestText == '/학식'
   ) {
     returnHtml += await re11();
     returnHtml += await re12();

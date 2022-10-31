@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 
 import { cardType } from './card';
 import { Line } from './line';
+import { KoLine } from './line/kor';
 import { re11 } from './rice/re11';
 import { re12 } from './rice/re12';
 import { re15 } from './rice/re15';
@@ -88,7 +89,13 @@ app.post('/cardtype/update', async (request: any, reply: FastifyReply) => {
 });
 
 app.post('/line', async (request: any, reply: FastifyReply) => {
-  await Line(request, reply);
+  const month = new Date().getMonth();
+  const day = new Date().getDate();
+  if (month == 9 && day == 9) {
+    await KoLine(request, reply);
+  } else {
+    await Line(request, reply);
+  }
 });
 
 (async () => {
