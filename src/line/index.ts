@@ -28,7 +28,7 @@ export const Line = async (request: any, reply: FastifyReply) => {
 
     const a = JSON.parse(rmprefix[1]);
 
-    returnHtml += a[0];
+    returnHtml += a[Math.floor(Math.random() * a.length)];
   }
 
   if (
