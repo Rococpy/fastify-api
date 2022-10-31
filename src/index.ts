@@ -1,6 +1,7 @@
 import { FastifyReply, FastifyRequest, fastify } from 'fastify';
 
 import axios from 'axios';
+import axiosRetry from 'axios-retry';
 import dotenv from 'dotenv';
 
 import { cardType } from './card';
@@ -23,6 +24,8 @@ const app = fastify({
   },
 });
 
+axiosRetry(axios, { retries: 3 });
+
 app.get('/', async (request: FastifyRequest, reply: FastifyReply) => {
   return 'Welcome to Rococpy Fastify API!';
 });
@@ -32,7 +35,7 @@ app.get('/rice', async (request: FastifyRequest, reply: FastifyReply) => {
 
   let returnHtml = '';
 
-  await axios
+  const a = await axios
     .get('https://www.hanyang.ac.kr/web/www/re11')
     .then(function (response) {
       // 성공 핸들링
