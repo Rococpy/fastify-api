@@ -38,10 +38,10 @@ export const Line = async (request: any, reply: FastifyReply) => {
 
   if (requestText.includes('/사다리 ')) {
     const rmprefix = requestText.split('/사다리');
+    console.log(rmprefix);
+    console.log(rmprefix.split(' ['));
 
-    const a = rmprefix[0].split(' [')[1].split(']')[0].split(',');
-    const b = rmprefix[1].split(' [')[1].split(']')[0].split(',');
-    console.log(a, b);
+    const list = rmprefix[1].split(' [')[1].split(']')[0].split(',');
 
     returnHtml += 'test';
 
