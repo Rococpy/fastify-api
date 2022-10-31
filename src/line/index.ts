@@ -29,7 +29,7 @@ export const Line = async (request: any, reply: FastifyReply) => {
     const a = rmprefix[1].split('[')[1].split(']')[0].split(',');
     console.log(a);
 
-    returnHtml += a[Math.floor(Math.random() * a.length)];
+    returnHtml += a[Math.floor(Math.random() * a.length)].trim();
   }
 
   if (
