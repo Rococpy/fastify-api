@@ -15,7 +15,8 @@ export const Line = async (request: any, reply: FastifyReply) => {
   let returnHtml = '';
 
   if (requestText == '/도움' || requestText == '/help') {
-    returnHtml += '/밥, /밥줘, /학, /학식: 학식 불러오기';
+    returnHtml +=
+      '/밥, /밥줘, /학, /학식\n/랜덤|random [항목1, 항목2]\n/사다리 [항목1, 항목2, ...] [인원1, 인원2, ...]\n - 주의! 항목 수와 인원 수는 동일하게 작성해주세요!';
   }
 
   if (requestText == '/랜덤' || requestText == '/random') {
@@ -58,7 +59,7 @@ export const Line = async (request: any, reply: FastifyReply) => {
         returnHtml += `\n${x.trim()} => ${b[i].trim()}`;
       });
     } else {
-      returnHtml = `항목과 인원의 수가 일치하지 않아요!`;
+      returnHtml = `[사다리] 항목과 인원의 수가 일치하지 않아요!`;
     }
   }
 
