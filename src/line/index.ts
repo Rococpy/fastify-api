@@ -21,6 +21,8 @@ export const Line = async (request: any, reply: FastifyReply) => {
       ? requestText.split('/random ')
       : '';
 
+    console.log(rmprefix);
+
     returnHtml += rmprefix[1];
   }
 
