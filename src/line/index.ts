@@ -26,7 +26,7 @@ export const Line = async (request: any, reply: FastifyReply) => {
       ? requestText.split('/random ')
       : '';
 
-    const a = JSON.parse(rmprefix[1]);
+    const a = rmprefix[1].split('[')[1].split('[')[0].split[','];
 
     returnHtml += a[Math.floor(Math.random() * a.length)];
   }
