@@ -315,7 +315,7 @@ app.post('/rice/line', async (request: any, reply: FastifyReply) => {
 
   const message = {
     type: 'text',
-    text: ['asas', returnHtml],
+    text: 'Hello World!',
   };
 
   client
