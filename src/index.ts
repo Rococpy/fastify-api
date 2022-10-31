@@ -108,23 +108,6 @@ app.post('/rice/line', async (request: any, reply: FastifyReply) => {
     requestText == '/학식' ||
     requestText == '/gkrtlr'
   ) {
-    const client = new line.Client({
-      channelAccessToken: process.env.LINE_API,
-    });
-
-    const message = {
-      type: 'text',
-      text: '잠시 기다려주세요...',
-    };
-
-    client
-      .replyMessage(request.body.events[0].replyToken, message)
-      .then(() => {})
-      .catch((err: any) => {
-        // error handling
-        console.log(err);
-      });
-
     returnHtml += await re11();
     returnHtml += await re12();
     returnHtml += await re15();
