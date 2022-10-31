@@ -27,7 +27,7 @@ export const Line = async (request: any, reply: FastifyReply) => {
       : '';
 
     console.log(rmprefix[1].split('['));
-    console.log(rmprefix[1].split('[')[1].split(']'));
+    console.log(rmprefix[1].split('[')[1].split(']')[0]);
 
     const a = rmprefix[1].split('[')[1].split(']')[0].split[','];
     console.log(a);
