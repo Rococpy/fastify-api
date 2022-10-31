@@ -194,7 +194,8 @@ app.post('/cardtype/update', async (request: any, reply: FastifyReply) => {
 });
 
 app.post('/rice/line', async (request: any, reply: FastifyReply) => {
-  console.log(...request.body.events.replyToken);
+  console.log(request.body.events);
+  console.log(request.body.events[0]);
   let returnHtml = '';
 
   // await axios
