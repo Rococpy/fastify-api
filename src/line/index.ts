@@ -15,13 +15,12 @@ export const Line = async (request: any, reply: FastifyReply) => {
   }
 
   if (requestText == '/랜덤' || requestText == '/random') {
+    console.log(requestText.includes('/랜덤'), requestText.includes('/random'));
     const rmprefix = requestText.includes('/랜덤')
       ? requestText.split('/랜덤 ')
       : requestText.includes('/random')
       ? requestText.split('/random ')
       : '';
-
-    console.log(rmprefix);
 
     returnHtml += rmprefix[1];
   }
