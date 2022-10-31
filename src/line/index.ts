@@ -48,10 +48,7 @@ export const Line = async (request: any, reply: FastifyReply) => {
 
     console.log(a.length, b.length);
 
-    if (a.length !== b.length) {
-      console.log(1);
-      returnHtml = `항목과 인원의 수가 일치하지 않아요!`;
-    } else {
+    if (a.length == b.length) {
       shuffle(a);
       shuffle(b);
 
@@ -60,6 +57,8 @@ export const Line = async (request: any, reply: FastifyReply) => {
       a.map((x: any, i: number) => {
         returnHtml += `\n${x.trim()} => ${b[i].trim()}`;
       });
+    } else {
+      returnHtml = `항목과 인원의 수가 일치하지 않아요!`;
     }
   }
 
