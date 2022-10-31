@@ -14,7 +14,7 @@ export const Line = async (request: any, reply: FastifyReply) => {
     returnHtml += '/밥, /밥줘, /학, /학식: 학식 불러오기';
   }
 
-  if (requestText.includes('/랜덤') || requestText.includes('/random')) {
+  if (requestText == '/랜덤' || requestText == '/random') {
     returnHtml += '/랜덤|random [항목1, 항목2]';
   }
 
