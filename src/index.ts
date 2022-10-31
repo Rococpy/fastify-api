@@ -24,8 +24,6 @@ const app = fastify({
   },
 });
 
-axiosRetry(axios, { retries: 3 });
-
 app.get('/', async (request: FastifyRequest, reply: FastifyReply) => {
   return 'Welcome to Rococpy Fastify API!';
 });
@@ -35,7 +33,9 @@ app.get('/rice', async (request: FastifyRequest, reply: FastifyReply) => {
 
   let returnHtml = '';
 
-  const a = await axios
+  axiosRetry(axios, { retries: 3 });
+
+  await axios
     .get('https://www.hanyang.ac.kr/web/www/re11')
     .then(function (response) {
       // 성공 핸들링
