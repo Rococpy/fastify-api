@@ -27,9 +27,25 @@ export const Line = async (request: any, reply: FastifyReply) => {
       : '';
 
     const a = rmprefix[1].split('[')[1].split(']')[0].split(',');
-    console.log(a);
 
     returnHtml += a[Math.floor(Math.random() * a.length)].trim();
+  }
+
+  if (requestText == '/사다리') {
+    returnHtml +=
+      '/사다리 [항목1, 항목2, ...] [인원1, 인원2, ...]\n 주의! 항목 수와 인원 수는 동일하게 작성해주세요!';
+  }
+
+  if (requestText.includes('/사다리 ')) {
+    const rmprefix = requestText.split('/사다리');
+
+    const a = rmprefix[0].split(' [')[1].split(']')[0].split(',');
+    const b = rmprefix[1].split(' [')[1].split(']')[0].split(',');
+    console.log(a, b);
+
+    returnHtml += 'test';
+
+    // returnHtml += a[Math.floor(Math.random() * a.length)].trim();
   }
 
   if (
