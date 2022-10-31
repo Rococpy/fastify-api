@@ -90,7 +90,7 @@ app.post('/cardtype/update', async (request: any, reply: FastifyReply) => {
   return returnData;
 });
 
-app.post('/rice/line', async (request: any, reply: FastifyReply) => {
+app.post('/line', async (request: any, reply: FastifyReply) => {
   const requestText = request.body.events[0].message.text;
   let returnHtml = '';
 
