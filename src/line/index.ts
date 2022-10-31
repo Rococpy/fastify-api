@@ -46,13 +46,14 @@ export const Line = async (request: any, reply: FastifyReply) => {
     const a = rmprefix[1].split(' [')[1].split(']')[0].split(',');
     const b = rmprefix[1].split(' [')[2].split(']')[0].split(',');
 
-    const as = shuffle(a);
+    shuffle(a);
+    shuffle(b);
 
-    console.log(as, a);
-    const bs = shuffle(b);
+    returnHtml += `사다리 결과`;
 
-    returnHtml += 'test';
-    // returnHtml += a[Math.floor(Math.random() * a.length)].trim();
+    a.map((x: any, i: number) => {
+      returnHtml += `\n${x.trim()} => ${b[i].trim()}`;
+    });
   }
 
   if (
