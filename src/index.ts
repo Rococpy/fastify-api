@@ -195,8 +195,6 @@ app.post('/cardtype/update', async (request: any, reply: FastifyReply) => {
 
 app.post('/rice/line', async (request: any, reply: FastifyReply) => {
   const requestText = request.body.events[0].message.text;
-  console.log(request.body.events[0]);
-  console.log(requestText);
   let returnHtml = '';
 
   if (requestText == '/?' || requestText == '/도움' || requestText == '/help') {
@@ -328,8 +326,7 @@ app.post('/rice/line', async (request: any, reply: FastifyReply) => {
 
   if (returnHtml) {
     const client = new line.Client({
-      channelAccessToken:
-        'FrhlnKDz3xiik9hCWWCB4HE3K3y61eAj3gTEFWzJZJDcdYlapcwc1cdVtypTZFzS4PA74QYNA+fGpjh9ztWPMtT6EqNasQnvSPi4neQEghPOVzQozlDzeiubtsjP9URx1KbJ9w+aw44RCkh9fPl+FgdB04t89/1O/w1cDnyilFU=',
+      channelAccessToken: process.env.LINE_API,
     });
 
     const message = {
