@@ -48,7 +48,7 @@ export const Line = async (request: any, reply: FastifyReply) => {
 
     const as = shuffle(a);
 
-    console.log(as);
+    console.log(as, a);
     const bs = shuffle(b);
 
     returnHtml += 'test';
