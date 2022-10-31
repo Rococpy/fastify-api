@@ -1,15 +1,11 @@
 import { FastifyReply, FastifyRequest, fastify } from 'fastify';
 
-import axios from 'axios';
-import axiosRetry from 'axios-retry';
 import dotenv from 'dotenv';
 
 import { cardType } from './card';
 import { re11 } from './rice/re11';
 import { re12 } from './rice/re12';
 import { re15 } from './rice/re15';
-
-const line = require('@line/bot-sdk');
 
 dotenv.config();
 
@@ -90,48 +86,7 @@ app.post('/cardtype/update', async (request: any, reply: FastifyReply) => {
   return returnData;
 });
 
-app.post('/line', async (request: any, reply: FastifyReply) => {
-  const requestText = request.body.events[0].message.text;
-  let returnHtml = '';
-
-  if (requestText == '/?' || requestText == '/도움' || requestText == '/help') {
-    returnHtml += '/밥, /밥줘, /학, /학식: 학식 불러오기';
-  }
-
-  if (
-    requestText == '/밥' ||
-    requestText == '/qkq' ||
-    requestText == '/밥줘' ||
-    requestText == '/qkqwnj' ||
-    requestText == '/학' ||
-    requestText == '/gkr' ||
-    requestText == '/학식' ||
-    requestText == '/gkrtlr'
-  ) {
-    returnHtml += await re11();
-    returnHtml += await re12();
-    returnHtml += await re15();
-  }
-
-  if (returnHtml) {
-    const client = new line.Client({
-      channelAccessToken: process.env.LINE_API,
-    });
-
-    const message = {
-      type: 'text',
-      text: returnHtml,
-    };
-
-    client
-      .replyMessage(request.body.events[0].replyToken, message)
-      .then(() => {})
-      .catch((err: any) => {
-        // error handling
-        console.log(err);
-      });
-  }
-});
+app.post('/line', async (request: any, reply: FastifyReply) => {});
 
 (async () => {
   await app.listen({ host: '::', port: PORT });
