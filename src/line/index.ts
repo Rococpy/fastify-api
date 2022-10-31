@@ -51,17 +51,16 @@ export const Line = async (request: any, reply: FastifyReply) => {
     if (a.length !== b.length) {
       console.log(1);
       returnHtml = `항목과 인원의 수가 일치하지 않아요!`;
-      return returnHtml;
+    } else {
+      shuffle(a);
+      shuffle(b);
+
+      returnHtml += `사다리 결과\n`;
+
+      a.map((x: any, i: number) => {
+        returnHtml += `\n${x.trim()} => ${b[i].trim()}`;
+      });
     }
-
-    shuffle(a);
-    shuffle(b);
-
-    returnHtml += `사다리 결과\n`;
-
-    a.map((x: any, i: number) => {
-      returnHtml += `\n${x.trim()} => ${b[i].trim()}`;
-    });
   }
 
   if (
