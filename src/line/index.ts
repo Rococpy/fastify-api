@@ -38,8 +38,9 @@ export const Line = async (request: any, reply: FastifyReply) => {
 
   if (requestText.includes('/사다리 ')) {
     const rmprefix = requestText.split('/사다리');
-    console.log(rmprefix);
-    console.log(rmprefix.split(' ['));
+    console.log(rmprefix[1].split(' ['));
+    console.log(rmprefix[1].split(' [')[0].split(']')[0]);
+    console.log(rmprefix[1].split(' [')[1].split(']')[0]);
 
     const list = rmprefix[1].split(' [')[1].split(']')[0].split(',');
 
