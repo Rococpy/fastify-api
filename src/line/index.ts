@@ -1,8 +1,8 @@
-import { FastifyReply } from 'fastify';
+import { re11 } from '../rice/re11';
+import { re12 } from '../rice/re12';
+import { re15 } from '../rice/re15';
 
-import { re11 } from '~/src/rice/re11';
-import { re12 } from '~/src/rice/re12';
-import { re15 } from '~/src/rice/re15';
+import { FastifyReply } from 'fastify';
 
 const line = require('@line/bot-sdk');
 
