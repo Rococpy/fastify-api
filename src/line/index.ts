@@ -7,7 +7,6 @@ import { FastifyReply } from 'fastify';
 const line = require('@line/bot-sdk');
 
 export const Line = async (request: any, reply: FastifyReply) => {
-  const ping = new Date().getTime();
   const requestText = request.body.events[0].message.text;
   let returnHtml = '';
 
@@ -15,10 +14,14 @@ export const Line = async (request: any, reply: FastifyReply) => {
     returnHtml += '/밥, /밥줘, /학, /학식: 학식 불러오기';
   }
 
-  if (requestText == '/핑' || requestText == '/ping' || requestText == '/vld') {
-    const pong = new Date().getTime();
+  if (requestText == '/랜덤' || requestText == '/random') {
+    const rmprefix = requestText.includes('/랜덤')
+      ? requestText.split('/랜덤 ')
+      : requestText.includes('/random')
+      ? requestText.split('/random ')
+      : '';
 
-    returnHtml += `퐁! ${pong - ping}`;
+    returnHtml += rmprefix[1];
   }
 
   if (
