@@ -48,7 +48,7 @@ export const Line = async (request: any, reply: FastifyReply) => {
 
     console.log(a.length, b.length);
 
-    if (a.length != b.length)
+    if (a.length !== b.length)
       return (returnHtml = `항목과 인원의 수가 일치하지 않아요!`);
 
     shuffle(a);
