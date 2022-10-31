@@ -197,7 +197,7 @@ app.post('/rice/line', async (request: any, reply: FastifyReply) => {
   const requestText = request.body.events[0].text;
   let returnHtml = '';
 
-  if (requestText == '/도움' || requestText == '/help') {
+  if (requestText == '/?' || requestText == '/도움' || requestText == '/help') {
     returnHtml += '/밥, /밥줘, /학, /학식: 학식 불러오기';
   }
 
