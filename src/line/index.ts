@@ -14,6 +14,10 @@ export const Line = async (request: any, reply: FastifyReply) => {
     returnHtml += '/밥, /밥줘, /학, /학식: 학식 불러오기';
   }
 
+  if (requestText.includes('/랜덤') || requestText.includes('/random')) {
+    returnHtml += '/랜덤|random [항목1, 항목2]';
+  }
+
   if (requestText.includes('/랜덤 ') || requestText.includes('/random ')) {
     console.log(requestText.includes('/랜덤'), requestText.includes('/random'));
     const rmprefix = requestText.includes('/랜덤')
