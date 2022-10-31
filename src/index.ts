@@ -195,6 +195,7 @@ app.post('/cardtype/update', async (request: any, reply: FastifyReply) => {
 
 app.post('/rice/line', async (request: any, reply: FastifyReply) => {
   const requestText = request.body.events[0].text;
+  console.log(request.body.events[0]);
   console.log(requestText);
   let returnHtml = '';
 
