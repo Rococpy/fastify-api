@@ -1,10 +1,11 @@
 import { FastifyReply, FastifyRequest, fastify } from 'fastify';
 
-import line from '@line/bot-sdk';
 import axios from 'axios';
 import dotenv from 'dotenv';
 
 import { cardType } from './card';
+
+const line = require('@line/bot-sdk');
 
 dotenv.config();
 
@@ -307,21 +308,20 @@ app.post('/rice/line', async (request: any, reply: FastifyReply) => {
       returnHtml += '\n\n';
     });
 
-  // return `<div>${String(returnHtml).split('\n').join('<br>')}</div>`;
-
   const client = new line.Client({
-    channelAccessToken: '<channel access token>',
+    channelAccessToken:
+      'FrhlnKDz3xiik9hCWWCB4HE3K3y61eAj3gTEFWzJZJDcdYlapcwc1cdVtypTZFzS4PA74QYNA+fGpjh9ztWPMtT6EqNasQnvSPi4neQEghPOVzQozlDzeiubtsjP9URx1KbJ9w+aw44RCkh9fPl+FgdB04t89/1O/w1cDnyilFU=',
   });
 
-  const message: any = {
+  const message = {
     type: 'text',
-    text: returnHtml,
+    text: ['asas', returnHtml],
   };
 
   client
     .replyMessage('<replyToken>', message)
     .then(() => {})
-    .catch(err => {
+    .catch((err: any) => {
       // error handling
     });
 });
