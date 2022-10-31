@@ -46,6 +46,8 @@ export const Line = async (request: any, reply: FastifyReply) => {
     const a = rmprefix[1].split(' [')[1].split(']')[0].split(',');
     const b = rmprefix[1].split(' [')[2].split(']')[0].split(',');
 
+    console.log(a.length, b.length);
+
     if (a.length != b.length)
       return (returnHtml = `항목과 인원의 수가 일치하지 않아요!`);
 
