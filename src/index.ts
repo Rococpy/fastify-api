@@ -324,22 +324,25 @@ app.post('/rice/line', async (request: any, reply: FastifyReply) => {
       });
   }
 
-  const client = new line.Client({
-    channelAccessToken:
-      'FrhlnKDz3xiik9hCWWCB4HE3K3y61eAj3gTEFWzJZJDcdYlapcwc1cdVtypTZFzS4PA74QYNA+fGpjh9ztWPMtT6EqNasQnvSPi4neQEghPOVzQozlDzeiubtsjP9URx1KbJ9w+aw44RCkh9fPl+FgdB04t89/1O/w1cDnyilFU=',
-  });
-
-  const message = {
-    type: 'text',
-    text: returnHtml,
-  };
-
-  client
-    .replyMessage(request.body.events[0].replyToken, message)
-    .then(() => {})
-    .catch((err: any) => {
-      // error handling
+  if (returnHtml) {
+    const client = new line.Client({
+      channelAccessToken:
+        'FrhlnKDz3xiik9hCWWCB4HE3K3y61eAj3gTEFWzJZJDcdYlapcwc1cdVtypTZFzS4PA74QYNA+fGpjh9ztWPMtT6EqNasQnvSPi4neQEghPOVzQozlDzeiubtsjP9URx1KbJ9w+aw44RCkh9fPl+FgdB04t89/1O/w1cDnyilFU=',
     });
+
+    const message = {
+      type: 'text',
+      text: returnHtml,
+    };
+
+    client
+      .replyMessage(request.body.events[0].replyToken, message)
+      .then(() => {})
+      .catch((err: any) => {
+        // error handling
+        console.log(err);
+      });
+  }
 });
 
 (async () => {
