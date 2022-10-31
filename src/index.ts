@@ -194,7 +194,7 @@ app.post('/cardtype/update', async (request: any, reply: FastifyReply) => {
 });
 
 app.post('/rice/line', async (request: any, reply: FastifyReply) => {
-  console.log(request.body);
+  console.log(request.body.events);
   let returnHtml = '';
 
   // await axios
@@ -319,7 +319,7 @@ app.post('/rice/line', async (request: any, reply: FastifyReply) => {
   };
 
   client
-    .replyMessage('<replyToken>', message)
+    .replyMessage(request.body.events.replyToken, message)
     .then(() => {})
     .catch((err: any) => {
       // error handling
