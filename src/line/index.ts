@@ -6,6 +6,10 @@ import { FastifyReply } from 'fastify';
 
 const line = require('@line/bot-sdk');
 
+function shuffle(array: any) {
+  array.sort(() => Math.random() - 0.5);
+}
+
 export const Line = async (request: any, reply: FastifyReply) => {
   const requestText = request.body.events[0].message.text;
   let returnHtml = '';
@@ -38,14 +42,16 @@ export const Line = async (request: any, reply: FastifyReply) => {
 
   if (requestText.includes('/사다리 ')) {
     const rmprefix = requestText.split('/사다리');
-    console.log(rmprefix[1].split(' ['));
-    console.log(rmprefix[1].split(' [')[1].split(']')[0]);
-    console.log(rmprefix[1].split(' [')[2].split(']')[0]);
 
-    const list = rmprefix[1].split(' [')[1].split(']')[0].split(',');
+    const a = rmprefix[1].split(' [')[1].split(']')[0].split(',');
+    const b = rmprefix[1].split(' [')[2].split(']')[0].split(',');
+
+    const as = shuffle(a);
+
+    console.log(as);
+    const bs = shuffle(b);
 
     returnHtml += 'test';
-
     // returnHtml += a[Math.floor(Math.random() * a.length)].trim();
   }
 
