@@ -195,6 +195,7 @@ app.post('/cardtype/update', async (request: any, reply: FastifyReply) => {
 
 app.post('/rice/line', async (request: any, reply: FastifyReply) => {
   const requestText = request.body.events[0].text;
+  console.log(requestText);
   let returnHtml = '';
 
   if (requestText == '/?' || requestText == '/도움' || requestText == '/help') {
