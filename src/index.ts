@@ -5,6 +5,9 @@ import axiosRetry from 'axios-retry';
 import dotenv from 'dotenv';
 
 import { cardType } from './card';
+import { re11 } from './rice/re11';
+import { re12 } from './rice/re12';
+import { re15 } from './rice/re15';
 
 const line = require('@line/bot-sdk');
 
@@ -33,118 +36,9 @@ app.get('/rice', async (request: FastifyRequest, reply: FastifyReply) => {
 
   let returnHtml = '';
 
-  axiosRetry(axios, { retries: 3 });
-
-  await axios
-    .get('https://www.hanyang.ac.kr/web/www/re11')
-    .then(function (response) {
-      // 성공 핸들링
-      returnHtml +=
-        response.data.split('<h3>')[1].split('</h3>')[0].trim() +
-        `(\\${response.data.split(`class="price">`)[1].split('</p>')[0]})\n`;
-      returnHtml +=
-        ' - ' +
-        response.data
-          .split('<h3>')[2]
-          .split('</h3>')[0]
-          .split('[')[1]
-          .split(']')[1]
-          .trim()
-          .split(', ')
-          .join('\n - ');
-
-      returnHtml += '\n\n';
-    })
-
-    .catch(function (error) {
-      console.log(
-        'Fail to get https://www.hanyang.ac.kr/web/www/re11 :' + error.code,
-      );
-
-      returnHtml +=
-        error.code == undefined
-          ? '오늘은 메뉴가 없는거 같아요! <a href="https://www.hanyang.ac.kr/web/www/re11" target="_blank">사이트</a>에서 확인해주세요!'
-          : `오..이런.. 오류가 난거같아요 새로고침 해주세요!: ${error.code} `;
-      returnHtml += '\n\n';
-    });
-
-  await axios
-    .get('https://www.hanyang.ac.kr/web/www/re12')
-    .then(function (response) {
-      // 성공 핸들링
-      returnHtml +=
-        response.data.split('<h3>')[1].split('</h3>')[0].trim() +
-        `(\\${
-          response.data.split(`class="price">`)[1].split('</p>')[0]
-        } | 택 1)\n`;
-
-      returnHtml +=
-        ' - ' +
-        response.data
-          .split('<h3>')[2]
-          .split('</h3>')[0]
-          .split('[')[1]
-          .split(']')[1]
-          .trim()
-          .split(', ')
-          .join('\n');
-
-      returnHtml +=
-        '\n - ' +
-        response.data
-          .split('<h3>')[3]
-          .split('</h3>')[0]
-          .split('[')[1]
-          .split(']')[1]
-          .trim()
-          .split(', ')
-          .join('\n - ');
-
-      returnHtml += '\n\n';
-    })
-    .catch(function (error) {
-      console.log(
-        'Fail to get https://www.hanyang.ac.kr/web/www/re12 :' + error.code,
-      );
-
-      returnHtml +=
-        error.code == undefined
-          ? '오늘은 메뉴가 없는거 같아요! <a href="https://www.hanyang.ac.kr/web/www/re12" target="_blank">사이트</a>에서 확인해주세요!'
-          : `오..이런.. 오류가 난거같아요 새로고침 해주세요!: ${error.code} `;
-
-      returnHtml += '\n\n';
-    });
-
-  await axios
-    .get('https://www.hanyang.ac.kr/web/www/re15')
-    .then(function (response) {
-      returnHtml +=
-        response.data.split('<h3>')[1].split('</h3>')[0].trim() +
-        `(\\${response.data.split(`class="price">`)[1].split('</p>')[0]})\n`;
-      returnHtml +=
-        ' - ' +
-        response.data
-          .split('<h3>')[2]
-          .split('</h3>')[0]
-          .split('[')[1]
-          .split(']')[1]
-          .trim()
-          .split(', ')
-          .join('\n - ');
-
-      returnHtml += '\n\n';
-    })
-    .catch(function (error) {
-      console.log(
-        'Fail to get https://www.hanyang.ac.kr/web/www/re15 :' + error.code,
-      );
-
-      returnHtml +=
-        error.code == undefined
-          ? '오늘은 메뉴가 없는거 같아요! <a href="https://www.hanyang.ac.kr/web/www/re15" target="_blank">사이트</a>에서 확인해주세요!'
-          : `오..이런.. 오류가 난거같아요 새로고침 해주세요!: ${error.code} `;
-      returnHtml += '\n\n';
-    });
+  returnHtml += await re11();
+  returnHtml += await re12();
+  returnHtml += await re15();
 
   return `<div>${String(returnHtml).split('\n').join('<br>')}</div>`;
 });
@@ -214,117 +108,9 @@ app.post('/rice/line', async (request: any, reply: FastifyReply) => {
     requestText == '/학식' ||
     requestText == '/gkrtlr'
   ) {
-    await axios
-      .get('https://www.hanyang.ac.kr/web/www/re11')
-      .then(function (response) {
-        // 성공 핸들링
-        returnHtml +=
-          response.data.split('<h3>')[1].split('</h3>')[0].trim() +
-          `(\\${response.data.split(`class="price">`)[1].split('</p>')[0]})\n`;
-        returnHtml +=
-          ' - ' +
-          response.data
-            .split('<h3>')[2]
-            .split('</h3>')[0]
-            .split('[')[1]
-            .split(']')[1]
-            .trim()
-            .split(', ')
-            .join('\n - ');
-
-        returnHtml += '\n\n';
-      })
-
-      .catch(function (error) {
-        console.log(
-          'Fail to get https://www.hanyang.ac.kr/web/www/re11 :' + error.code,
-        );
-
-        returnHtml +=
-          error.code == undefined
-            ? '오늘은 메뉴가 없는거 같아요! <a href="https://www.hanyang.ac.kr/web/www/re11" target="_blank">사이트</a>에서 확인해주세요!'
-            : `앗.. 누락된거같아요! 다시 요청해주세요!: ${error.code} `;
-
-        returnHtml += '\n\n';
-      });
-
-    await axios
-      .get('https://www.hanyang.ac.kr/web/www/re12')
-      .then(function (response) {
-        // 성공 핸들링
-        returnHtml +=
-          response.data.split('<h3>')[1].split('</h3>')[0].trim() +
-          `(\\${
-            response.data.split(`class="price">`)[1].split('</p>')[0]
-          } | 택 1)\n`;
-
-        returnHtml +=
-          ' - ' +
-          response.data
-            .split('<h3>')[2]
-            .split('</h3>')[0]
-            .split('[')[1]
-            .split(']')[1]
-            .trim()
-            .split(', ')
-            .join('\n');
-
-        returnHtml +=
-          '\n - ' +
-          response.data
-            .split('<h3>')[3]
-            .split('</h3>')[0]
-            .split('[')[1]
-            .split(']')[1]
-            .trim()
-            .split(', ')
-            .join('\n - ');
-
-        returnHtml += '\n\n';
-      })
-      .catch(function (error) {
-        console.log(
-          'Fail to get https://www.hanyang.ac.kr/web/www/re12 :' + error.code,
-        );
-
-        returnHtml +=
-          error.code == undefined
-            ? '오늘은 메뉴가 없는거 같아요! <a href="https://www.hanyang.ac.kr/web/www/re12" target="_blank">사이트</a>에서 확인해주세요!'
-            : `앗.. 누락된거같아요! 다시 요청해주세요!: ${error.code} `;
-
-        returnHtml += '\n\n';
-      });
-
-    await axios
-      .get('https://www.hanyang.ac.kr/web/www/re15')
-      .then(function (response) {
-        returnHtml +=
-          response.data.split('<h3>')[1].split('</h3>')[0].trim() +
-          `(\\${response.data.split(`class="price">`)[1].split('</p>')[0]})\n`;
-        returnHtml +=
-          ' - ' +
-          response.data
-            .split('<h3>')[2]
-            .split('</h3>')[0]
-            .split('[')[1]
-            .split(']')[1]
-            .trim()
-            .split(', ')
-            .join('\n - ');
-
-        returnHtml += '\n\n';
-      })
-      .catch(function (error) {
-        console.log(
-          'Fail to get https://www.hanyang.ac.kr/web/www/re15 :' + error.code,
-        );
-
-        returnHtml +=
-          error.code == undefined
-            ? '오늘은 메뉴가 없는거 같아요! <a href="https://www.hanyang.ac.kr/web/www/re15" target="_blank">사이트</a>에서 확인해주세요!'
-            : `앗.. 누락된거같아요! 다시 요청해주세요!: ${error.code} `;
-        returnHtml += '\n\n';
-      });
+    returnHtml += await re11();
+    returnHtml += await re12();
+    returnHtml += await re15();
   }
 
   if (returnHtml) {
