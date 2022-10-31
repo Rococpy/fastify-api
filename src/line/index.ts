@@ -46,10 +46,13 @@ export const Line = async (request: any, reply: FastifyReply) => {
     const a = rmprefix[1].split(' [')[1].split(']')[0].split(',');
     const b = rmprefix[1].split(' [')[2].split(']')[0].split(',');
 
+    if (a.length != b.length)
+      return (returnHtml = `항목과 인원의 수가 일치하지 않아요!`);
+
     shuffle(a);
     shuffle(b);
 
-    returnHtml += `사다리 결과`;
+    returnHtml += `사다리 결과\n`;
 
     a.map((x: any, i: number) => {
       returnHtml += `\n${x.trim()} => ${b[i].trim()}`;
