@@ -16,7 +16,7 @@ export const Line = async (request: any, reply: FastifyReply) => {
 
   if (requestText == '/도움' || requestText == '/help') {
     returnHtml +=
-      '/밥|밥줘|학|학식\n/랜덤|random [항목1, 항목2]\n/사다리 [항목1, 항목2, ...] [인원1, 인원2, ...]\n - 주의! 항목 수와 인원 수는 동일하게 작성해주세요!';
+      '/밥|밥줘|학|학식\n/랜덤|random [항목1, 항목2]\n/사다리 [항목1, 항목2, ...] [인원1, 인원2, ...]\n - 주의! 항목 수와 인원 수는 동일하게 작성해주세요!\n\n이 녀석은 오류나면 답을 안주니 참고';
   }
 
   if (requestText == '/랜덤' || requestText == '/random') {
