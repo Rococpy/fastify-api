@@ -197,116 +197,116 @@ app.post('/rice/line', async (request: any, reply: FastifyReply) => {
   console.log(request);
   let returnHtml = '';
 
-  await axios
-    .get('https://www.hanyang.ac.kr/web/www/re11')
-    .then(function (response) {
-      // 성공 핸들링
-      returnHtml +=
-        response.data.split('<h3>')[1].split('</h3>')[0].trim() +
-        `(\\${response.data.split(`class="price">`)[1].split('</p>')[0]})\n`;
-      returnHtml +=
-        ' - ' +
-        response.data
-          .split('<h3>')[2]
-          .split('</h3>')[0]
-          .split('[')[1]
-          .split(']')[1]
-          .trim()
-          .split(', ')
-          .join('\n - ');
+  // await axios
+  //   .get('https://www.hanyang.ac.kr/web/www/re11')
+  //   .then(function (response) {
+  //     // 성공 핸들링
+  //     returnHtml +=
+  //       response.data.split('<h3>')[1].split('</h3>')[0].trim() +
+  //       `(\\${response.data.split(`class="price">`)[1].split('</p>')[0]})\n`;
+  //     returnHtml +=
+  //       ' - ' +
+  //       response.data
+  //         .split('<h3>')[2]
+  //         .split('</h3>')[0]
+  //         .split('[')[1]
+  //         .split(']')[1]
+  //         .trim()
+  //         .split(', ')
+  //         .join('\n - ');
 
-      returnHtml += '\n\n';
-    })
+  //     returnHtml += '\n\n';
+  //   })
 
-    .catch(function (error) {
-      console.log(
-        'Fail to get https://www.hanyang.ac.kr/web/www/re11 :' + error.code,
-      );
+  //   .catch(function (error) {
+  //     console.log(
+  //       'Fail to get https://www.hanyang.ac.kr/web/www/re11 :' + error.code,
+  //     );
 
-      returnHtml +=
-        error.code == undefined
-          ? '오늘은 메뉴가 없는거 같아요! <a href="https://www.hanyang.ac.kr/web/www/re11" target="_blank">사이트</a>에서 확인해주세요!'
-          : `오..이런.. 오류가 난거같아요 새로고침 해주세요!: ${error.code} `;
-      returnHtml += '\n\n';
-    });
+  //     returnHtml +=
+  //       error.code == undefined
+  //         ? '오늘은 메뉴가 없는거 같아요! <a href="https://www.hanyang.ac.kr/web/www/re11" target="_blank">사이트</a>에서 확인해주세요!'
+  //         : `오..이런.. 오류가 난거같아요 새로고침 해주세요!: ${error.code} `;
+  //     returnHtml += '\n\n';
+  //   });
 
-  await axios
-    .get('https://www.hanyang.ac.kr/web/www/re12')
-    .then(function (response) {
-      // 성공 핸들링
-      returnHtml +=
-        response.data.split('<h3>')[1].split('</h3>')[0].trim() +
-        `(\\${
-          response.data.split(`class="price">`)[1].split('</p>')[0]
-        } | 택 1)\n`;
+  // await axios
+  //   .get('https://www.hanyang.ac.kr/web/www/re12')
+  //   .then(function (response) {
+  //     // 성공 핸들링
+  //     returnHtml +=
+  //       response.data.split('<h3>')[1].split('</h3>')[0].trim() +
+  //       `(\\${
+  //         response.data.split(`class="price">`)[1].split('</p>')[0]
+  //       } | 택 1)\n`;
 
-      returnHtml +=
-        ' - ' +
-        response.data
-          .split('<h3>')[2]
-          .split('</h3>')[0]
-          .split('[')[1]
-          .split(']')[1]
-          .trim()
-          .split(', ')
-          .join('\n');
+  //     returnHtml +=
+  //       ' - ' +
+  //       response.data
+  //         .split('<h3>')[2]
+  //         .split('</h3>')[0]
+  //         .split('[')[1]
+  //         .split(']')[1]
+  //         .trim()
+  //         .split(', ')
+  //         .join('\n');
 
-      returnHtml +=
-        '\n - ' +
-        response.data
-          .split('<h3>')[3]
-          .split('</h3>')[0]
-          .split('[')[1]
-          .split(']')[1]
-          .trim()
-          .split(', ')
-          .join('\n - ');
+  //     returnHtml +=
+  //       '\n - ' +
+  //       response.data
+  //         .split('<h3>')[3]
+  //         .split('</h3>')[0]
+  //         .split('[')[1]
+  //         .split(']')[1]
+  //         .trim()
+  //         .split(', ')
+  //         .join('\n - ');
 
-      returnHtml += '\n\n';
-    })
-    .catch(function (error) {
-      console.log(
-        'Fail to get https://www.hanyang.ac.kr/web/www/re12 :' + error.code,
-      );
+  //     returnHtml += '\n\n';
+  //   })
+  //   .catch(function (error) {
+  //     console.log(
+  //       'Fail to get https://www.hanyang.ac.kr/web/www/re12 :' + error.code,
+  //     );
 
-      returnHtml +=
-        error.code == undefined
-          ? '오늘은 메뉴가 없는거 같아요! <a href="https://www.hanyang.ac.kr/web/www/re12" target="_blank">사이트</a>에서 확인해주세요!'
-          : `오..이런.. 오류가 난거같아요 새로고침 해주세요!: ${error.code} `;
+  //     returnHtml +=
+  //       error.code == undefined
+  //         ? '오늘은 메뉴가 없는거 같아요! <a href="https://www.hanyang.ac.kr/web/www/re12" target="_blank">사이트</a>에서 확인해주세요!'
+  //         : `오..이런.. 오류가 난거같아요 새로고침 해주세요!: ${error.code} `;
 
-      returnHtml += '\n\n';
-    });
+  //     returnHtml += '\n\n';
+  //   });
 
-  await axios
-    .get('https://www.hanyang.ac.kr/web/www/re15')
-    .then(function (response) {
-      returnHtml +=
-        response.data.split('<h3>')[1].split('</h3>')[0].trim() +
-        `(\\${response.data.split(`class="price">`)[1].split('</p>')[0]})\n`;
-      returnHtml +=
-        ' - ' +
-        response.data
-          .split('<h3>')[2]
-          .split('</h3>')[0]
-          .split('[')[1]
-          .split(']')[1]
-          .trim()
-          .split(', ')
-          .join('\n - ');
+  // await axios
+  //   .get('https://www.hanyang.ac.kr/web/www/re15')
+  //   .then(function (response) {
+  //     returnHtml +=
+  //       response.data.split('<h3>')[1].split('</h3>')[0].trim() +
+  //       `(\\${response.data.split(`class="price">`)[1].split('</p>')[0]})\n`;
+  //     returnHtml +=
+  //       ' - ' +
+  //       response.data
+  //         .split('<h3>')[2]
+  //         .split('</h3>')[0]
+  //         .split('[')[1]
+  //         .split(']')[1]
+  //         .trim()
+  //         .split(', ')
+  //         .join('\n - ');
 
-      returnHtml += '\n\n';
-    })
-    .catch(function (error) {
-      console.log(
-        'Fail to get https://www.hanyang.ac.kr/web/www/re15 :' + error.code,
-      );
+  //     returnHtml += '\n\n';
+  //   })
+  //   .catch(function (error) {
+  //     console.log(
+  //       'Fail to get https://www.hanyang.ac.kr/web/www/re15 :' + error.code,
+  //     );
 
-      returnHtml +=
-        error.code == undefined
-          ? '오늘은 메뉴가 없는거 같아요! <a href="https://www.hanyang.ac.kr/web/www/re15" target="_blank">사이트</a>에서 확인해주세요!'
-          : `오..이런.. 오류가 난거같아요 새로고침 해주세요!: ${error.code} `;
-      returnHtml += '\n\n';
-    });
+  //     returnHtml +=
+  //       error.code == undefined
+  //         ? '오늘은 메뉴가 없는거 같아요! <a href="https://www.hanyang.ac.kr/web/www/re15" target="_blank">사이트</a>에서 확인해주세요!'
+  //         : `오..이런.. 오류가 난거같아요 새로고침 해주세요!: ${error.code} `;
+  //     returnHtml += '\n\n';
+  //   });
 
   const client = new line.Client({
     channelAccessToken:
