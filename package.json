@@ -9,6 +9,7 @@
     "start": "tsc && cross-env NODE_ENV=production node dist/index.js"
   },
   "dependencies": {
+    "@line/bot-sdk": "^7.5.2",
     "axios": "^1.1.2",
     "cross-env": "^7.0.3",
     "dotenv": "^16.0.3",
