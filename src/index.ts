@@ -1,5 +1,7 @@
 import { FastifyReply, FastifyRequest, fastify } from 'fastify';
 
+import cors from '@fastify/cors';
+
 import dotenv from 'dotenv';
 
 import { cardType } from './card';
@@ -24,6 +26,8 @@ const app = fastify({
     },
   },
 });
+
+app.register(cors);
 
 app.get('/', async (request: FastifyRequest, reply: FastifyReply) => {
   return 'Welcome to Rococpy Fastify API!';
