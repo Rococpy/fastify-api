@@ -42,7 +42,7 @@ app.get('/rice', async (request: FastifyRequest, reply: FastifyReply) => {
   returnHtml += await re12();
   returnHtml += await re15();
 
-  return `<div>${String(returnHtml).split('\n').join('<br>')}</div>`;
+  return `<div>${String(returnHtml).split('\n').join('<br/>')}</div>`;
 });
 
 app.get('/cardtype', async (request: FastifyRequest, reply: FastifyReply) => {
