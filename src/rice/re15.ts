@@ -20,7 +20,7 @@ export const re15 = async () => {
           .split('[')[1]
           .split(']')[1]
           .trim()
-          .split(', ')
+          .split(' ')
           .join('\n - ');
 
       returnHtml += '\n\n';
