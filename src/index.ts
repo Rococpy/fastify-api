@@ -110,7 +110,9 @@ app.get('/devtest', async (request: FastifyRequest, reply: FastifyReply) => {
       Cookie:
         'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNjY3NzgwNjQ5LCJleHAiOjE2NzAzNzI2NDl9.Oig3EIWOSCUNmZZIXUDp_GyH9a_G9cAdr7JYv_cDz10;',
     },
-  }).then(res => res.data);
+  }).then(res => {
+    return res.data;
+  });
   return 'aaa';
 });
 
