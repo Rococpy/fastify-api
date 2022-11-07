@@ -104,14 +104,14 @@ app.post('/line', async (request: any, reply: FastifyReply) => {
 });
 
 app.get('/devtest', async (request: FastifyRequest, reply: FastifyReply) => {
-  const axData = await axios(`https://admin.addprism.com/sounds`, {
+  await axios(`https://admin.addprism.com/sounds`, {
     method: 'get',
     headers: {
       Cookie:
         'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNjY3NzgwNjQ5LCJleHAiOjE2NzAzNzI2NDl9.Oig3EIWOSCUNmZZIXUDp_GyH9a_G9cAdr7JYv_cDz10;',
     },
-  });
-  return axData;
+  }).then(res => res.data);
+  return 'aaa';
 });
 
 (async () => {
