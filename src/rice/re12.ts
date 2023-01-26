@@ -27,16 +27,16 @@ export const re12 = async () => {
           .split(', ')
           .join('\n');
 
-      returnHtml +=
-        '\n - ' +
-        response.data
-          .split('<h3>')[3]
-          .split('</h3>')[0]
-          .split('[')[1]
-          .split(']')[1]
-          .trim()
-          .split(', ')
-          .join('\n - ');
+      // returnHtml +=
+      //   '\n - ' +
+      //   response.data
+      //     .split('<h3>')[3]
+      //     .split('</h3>')[0]
+      //     .split('[')[1]
+      //     .split(']')[1]
+      //     .trim()
+      //     .split(', ')
+      //   .join('\n - ');
 
       returnHtml += '\n\n';
     })
