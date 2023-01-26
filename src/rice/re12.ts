@@ -24,7 +24,7 @@ export const re12 = async () => {
           .split('[')[1]
           .split(']')[1]
           .trim()
-          .split(', ')
+          .split(' &')
           .join('\n');
 
       // returnHtml +=
