@@ -25,7 +25,7 @@ export const re12 = async () => {
           .split(']')[1]
           .trim()
           .split(' &')
-          .join('\n');
+          .join('\n - ');
 
       // returnHtml +=
       //   '\n - ' +
