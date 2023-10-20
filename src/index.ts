@@ -10,6 +10,7 @@ import { Line } from './line';
 import { KoLine } from './line/kor';
 import { re11 } from './rice/re11';
 import { re12 } from './rice/re12';
+import { re14 } from './rice/re14';
 import { re15 } from './rice/re15';
 
 dotenv.config();
@@ -39,9 +40,10 @@ app.get('/rice', async (request: FastifyRequest, reply: FastifyReply) => {
 
   let returnHtml = '';
 
-  returnHtml += await re11();
   returnHtml += await re12();
+  returnHtml += await re11();
   returnHtml += await re15();
+  returnHtml += await re14();
 
   return `<div>${String(returnHtml).split('\n').join('<br/>')}</div>`;
 });
