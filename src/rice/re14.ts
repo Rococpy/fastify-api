@@ -9,16 +9,23 @@ export const re14 = async () => {
   await axios
     .get('https://www.hanyang.ac.kr/web/www/re14')
     .then(function (response) {
+      console.log(response.data.split('<h3>')[2].split('</h3>')[0]);
       returnHtml +=
         response.data.split('<h3>')[1].split('</h3>')[0].trim() +
         `(\\${response.data.split(`class="price">`)[1].split('</p>')[0]})\n`;
       returnHtml +=
         ' - ' +
+        // response.data
+        //   .split('<h3>')[2]
+        //   .split('</h3>')[0]
+        //   .split('[')[1]
+        //   .split(']')[1]
+        //   .trim()
+        //   .split(' ')
+        //   .join('\n - ');
         response.data
           .split('<h3>')[2]
           .split('</h3>')[0]
-          .split('[')[1]
-          .split(']')[1]
           .trim()
           .split(' ')
           .join('\n - ');
